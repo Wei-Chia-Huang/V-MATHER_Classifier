@@ -1,4 +1,4 @@
-# [ 0224 ] V-MATHER 分類器程式碼初上傳
+# [ 0301 ] V-MATHER 分類器程式碼修改
 
 ## 執行方式
 
@@ -6,52 +6,52 @@
 
 ### 運行流程
 
-1. 更改 Classifier_test.py 當中的 input
-    
-    **⚠️ 輸入時，運算子前後都要加空格**
-    
-2. 執行 Classifier_test.py
-3. 於終端機顯示 `input, 包含的分類目標 1, 包含的分類目標 2, ...`
+1. 執行 classifier_test.py
+2. 連續輸入題目，並於終端機顯示 `題目, 包含的分類目標 1, 包含的分類目標 2, ...`
+3. 於終端機輸入 `ctrl + c` 結束程式
 
 ### 範例
 
-1. input = 53 + 626
-2. 執行 Classifier_test.py
-3. 於終端機顯示 `53 + 626, 三位數的加法（不進位）, 十萬以內的加法`
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bf7bbcc-3245-4633-bc9a-c564c262e6a7/Untitled.png)
 
 ## 文件說明
 
-### Classifier_test.py
+### classifier_test.py
 
 此程式碼為數學問題分類器，可取得題目數值，並判斷題目為 （以均一為分類標準）
 
+目前已完成容錯輸入第一點
+
 [初步解題系統實作](https://www.notion.so/06694af4299445b892e3a9e6f2c2599e)
 
-### OperateObject.py
+[**設計規格說明**](https://www.notion.so/f201c65fe79f43bb8f9e1eb4d8ca9948)
+
+### operate_object.py
 
 - 此程式為各種運算方式的類別（class）
-- 目前以撰寫加法、減法、乘法、除法的類別
+- ~~目前已撰寫加法、減法、乘法、除法的類別~~
+- 目前只有 Node 類別
 - 未來可在此程式新增運算方式的類別
 
-### AdditionClassify.py（初步撰寫完成）
+### addition_classify.py（初步撰寫完成）
 
-- 此程式用來判斷加法物件包含哪些分類目標，並回傳給 Classifier_test.py
+- 此程式用來判斷加法物件包含哪些分類目標，並回傳給 classifier_test.py
 - 利用 python 的字典來做迭代判斷
 - 未來可在此程式新增加法分類目標與規則
 
-### SubstractionClassify.py（尚未撰寫）
+### subtraction_classify.py（初步撰寫完成）
 
-- 此程式用來判斷減法物件包含哪些分類目標，並回傳給 Classifier_test.py
+- 此程式用來判斷減法物件包含哪些分類目標，並回傳給 classifier_test.py
 - 利用 python 的字典來做迭代判斷
 - 未來可在此程式新增減法分類目標與規則
 
-### MutiplicationClassify.py（尚未撰寫）
+### multiplication_classify.py（初步撰寫完成）
 
-- 此程式用來判斷乘法物件包含哪些分類目標，並回傳給 Classifier_test.py
+- 此程式用來判斷乘法物件包含哪些分類目標，並回傳給 classifier_test.py
 - 利用 python 的字典來做迭代判斷
 - 未來可在此程式新增乘法分類目標與規則
 
-### DivisionClassify.py（尚未撰寫）
+### division_classify.py（尚未撰寫）
 
 - 此程式用來判斷除法物件包含哪些分類目標，並回傳給 Classifier_test.py
 - 利用 python 的字典來做迭代判斷
