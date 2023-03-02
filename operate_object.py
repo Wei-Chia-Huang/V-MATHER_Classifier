@@ -1,6 +1,7 @@
 from addition_classify import addition_classify
 from subtraction_classify import subtraction_classify
 from multiplication_classify import multiplication_classify
+from division_classify import division_classify
 
 class Node():
     def __init__(self, question):
@@ -18,11 +19,15 @@ class Node():
         elif self.operator == "*":
             return multiplication_classify(self.LeftValue, self.RightValue)
         elif self.operator == "/":
-            return "division"
+            return division_classify(self.LeftValue, self.RightValue)
 
     # 將輸入預處理，建立此物件的屬性
     def __preprocessing(self, question):
         operator_list = ["+", "-", "*", "/"]
+
+        for w in question:
+            if w == "=" or w == "?":
+                question = question.replace(w, "")
         
         for char in operator_list:
             if char in question:
