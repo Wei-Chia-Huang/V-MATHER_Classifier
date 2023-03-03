@@ -15,11 +15,15 @@ def addition_classify(value1, value2):
         "大數加法": __addition_of_large_numbers
     }
 
-    for key in classify_rule:
-        if classify_rule[key](value1, value2):
-            classify_tag.append(key)
+    try:
+        for key in classify_rule:
+            if classify_rule[key](value1, value2):
+                classify_tag.append(key)
 
-    return ", ".join(classify_tag)
+        return ", ".join(classify_tag)
+    except Exception as err:
+        print(err)
+        return "addition_classify.py 有 Bug, 須排除"
 
 # 分類規則：10 以內的加法
 def __less_than_10(value1, value2):

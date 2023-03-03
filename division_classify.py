@@ -15,11 +15,15 @@ def division_classify(value1, value2):
         "大數除法": __division_of_large_numbers
     }
 
-    for key in classify_rule:
-        if classify_rule[key](value1, value2):
-            classify_tag.append(key)
+    try:
+        for key in classify_rule:
+            if classify_rule[key](value1, value2):
+                classify_tag.append(key)
 
-    return ", ".join(classify_tag)
+        return ", ".join(classify_tag)
+    except Exception as err:
+        print(err)
+        return "division_classify.py 有 Bug, 須排除"
 
 # 分類規則：除數為一位數
 def __divisor_is_one_digit(value1, value2):

@@ -2,6 +2,7 @@ from addition_classify import addition_classify
 from subtraction_classify import subtraction_classify
 from multiplication_classify import multiplication_classify
 from division_classify import division_classify
+from decimal_operation_classify import decimal_operation_classify
 
 class Node():
     def __init__(self, question):
@@ -12,7 +13,9 @@ class Node():
     
     # 根據物件的 self.operator 來決定分類方式，並回傳分類結果
     def classify(self):
-        if self.operator == "+":
+        if "." in self.LeftValue or "." in self.RightValue:
+            return decimal_operation_classify(self.operator, self.LeftValue, self.RightValue)
+        elif self.operator == "+":
             return addition_classify(self.LeftValue, self.RightValue)
         elif self.operator == "-":
             return subtraction_classify(self.LeftValue, self.RightValue)

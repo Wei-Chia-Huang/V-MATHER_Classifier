@@ -1,4 +1,4 @@
-# [ 0302 ] V-MATHER 分類器程式碼修改
+# [ 0303 ] V-MATHER 分類器程式碼修改
 
 ## 執行方式
 
@@ -40,6 +40,8 @@
 - 目前只有 Node 類別
 - 未來可在此程式新增運算方式的類別
 
+### xxx_classify.py 都有利用 `try...except...` 來幫助排除錯誤
+
 ### addition_classify.py（初步撰寫完成）
 
 - 此程式用來判斷加法物件包含哪些分類目標，並回傳給 classifier_test.py
@@ -60,9 +62,15 @@
 
 ### division_classify.py（初步撰寫完成）
 
-- 此程式用來判斷除法物件包含哪些分類目標，並回傳給 Classifier_test.py
+- 此程式用來判斷除法物件包含哪些分類目標，並回傳給 classifier_test.py
 - 利用 python 的字典來做迭代判斷
 - 未來可在此程式新增除法分類目標與規則
+
+### decimal_operation_classify.py（初步撰寫完成）
+
+- 此程式用來判斷小數運算物件包含哪些分類目標，並回傳給 classifier_test.py
+- 利用 python 的字典來做迭代判斷
+- 未來可在此程式新增小數運算分類目標與規則
 
 ### Infix _To_Postfix.py、ExpressTree.py（暫時用不到）
 

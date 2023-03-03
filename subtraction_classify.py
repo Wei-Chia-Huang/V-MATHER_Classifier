@@ -15,11 +15,15 @@ def subtraction_classify(value1, value2):
         "大數減法": __substraction_of_large_numbers
     }
 
-    for key in classify_rule:
-        if classify_rule[key](value1, value2):
-            classify_tag.append(key)
-    
-    return ", ".join(classify_tag)
+    try:
+        for key in classify_rule:
+            if classify_rule[key](value1, value2):
+                classify_tag.append(key)
+        
+        return ", ".join(classify_tag)
+    except Exception as err:
+        print(err)
+        return "subtraction_classify.py 有 Bug, 須排除"
 
 # 分類規則：10 以內的減法
 def __less_than_10(value1, value2):

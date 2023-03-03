@@ -16,11 +16,15 @@ def multiplication_classify(value1, value2):
         "大數乘法": __multiplication_of_large_numbers
     }
 
-    for key in classify_rule:
-        if classify_rule[key](value1, value2):
-            classify_tag.append(key)
+    try:
+        for key in classify_rule:
+            if classify_rule[key](value1, value2):
+                classify_tag.append(key)
 
-    return ", ".join(classify_tag)
+        return ", ".join(classify_tag)
+    except Exception as err:
+        print(err)
+        return "multiplication_classify.py 有 Bug, 須排除"
 
 # 分類規則：0 和 1 的乘法
 def __multiplication_of_0_or_1(value1, value2):
