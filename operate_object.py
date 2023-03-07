@@ -4,6 +4,8 @@ from multiplication_classify import multiplication_classify
 from division_classify import division_classify
 from decimal_operation_classify import decimal_operation_classify
 
+import unicodedata
+
 class Node():
     def __init__(self, question):
         self.operator = None
@@ -26,18 +28,25 @@ class Node():
 
     # 將輸入預處理，建立此物件的屬性
     def __preprocessing(self, question):
-        operator_list = ["+", "-", "*", "/"]
+        # 運算子符號
+        operator_list = ["+", "-", "*", "/"]  
+        
+        # 停用符號
+        ignore_symbols = [" ", "=", "?", "#", "@", "\""]  
 
-        for w in question:
-            if w == "=" or w == "?":
-                question = question.replace(w, "")
+        # 將題目字元轉為半形大小
+        question = unicodedata.normalize("NFKC", question)  
+
+        for char in ignore_symbols:
+            if char in question:
+                question = question.replace(char, "")
         
         for char in operator_list:
             if char in question:
                 self.operator = char
         
-        self.LeftValue = question.split(self.operator)[0].strip()
-        self.RightValue = question.split(self.operator)[1].strip()
+        self.LeftValue = question.split(self.operator)[0]
+        self.RightValue = question.split(self.operator)[1]
 
 
 # class Addition(Node):

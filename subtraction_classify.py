@@ -12,7 +12,8 @@ def subtraction_classify(value1, value2):
         "三位數的減法（有退位）": __three_digit_numbers_with_abdication,
         "四位數的減法": __four_digit_numbers,
         "十萬以內的減法": __less_than_one_hundred_thousand,
-        "大數減法": __substraction_of_large_numbers
+        "大數減法": __substraction_of_large_numbers,
+        "運算結果小於零": __ansewr_less_then_0
     }
 
     try:
@@ -96,5 +97,11 @@ def __less_than_one_hundred_thousand(value1, value2):
 # 分類規則：大數減法
 def __substraction_of_large_numbers(value1, value2):
     if int(value1) > int(value2) and int(value1) - int(value2) > 100000:
+        return True
+    return False
+
+# 分類規則：運算結果小於零
+def __ansewr_less_then_0(value1, value2):
+    if int(value1) < int(value2):
         return True
     return False

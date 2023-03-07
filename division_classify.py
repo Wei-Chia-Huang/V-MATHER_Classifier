@@ -11,6 +11,7 @@ def division_classify(value1, value2):
         "三位數除以二位數": __three_digit_divided_two_digit,
         "四位數除以二位數": __four_digit_divided_two_digit,
         "四位數除以三位數": __four_digit_divided_three_digit,
+        "除數為三位數": __divisor_is_three_digit,
         "末位是 0 的除法": __the_last_bit_is_0,
         "大數除法": __division_of_large_numbers
     }
@@ -64,6 +65,12 @@ def __four_digit_divided_two_digit(value1, value2):
 # 分類規則：四位數除以三位數
 def __four_digit_divided_three_digit(value1, value2):
     if len(value1) == 4 and len(value2) == 3:
+        return True
+    return False
+
+# 分類規則：除數為三位數
+def __divisor_is_three_digit(value1, value2):
+    if len(value2) == 3 and int(value2) != 0 and int(value1) != 0:
         return True
     return False
 
