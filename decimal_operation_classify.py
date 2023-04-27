@@ -119,7 +119,7 @@ def __two_decimal_times_two_digit(operator, value1, value2):
         # 判斷value1, value2是否有二位小數
         if max(value1_decimal, value2_decimal) == 2:
             # 判斷value1, value2是否有二位整數
-            if len(value1) == 1 or len(value2) == 2:
+            if len(value1) == 2 or len(value2) == 2:
                 return True
     return False
 

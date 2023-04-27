@@ -1,4 +1,4 @@
-# [ 0307 ] V-MATHER 分類器程式碼修改
+# [ 0427 ] V-MATHER 分類器程式碼修改
 
 ## 執行方式
 
@@ -21,6 +21,8 @@
     
     運算子前後加空格。例如：`123 + 456`
     
+    🆕 分數的輸入方式為 `Divide[分子, 分母]`
+    
 - 容錯輸入
     1. 輸入可以自動忽略空格。例如：`123+421` 或 `223 + 321`
     2. 接受半全形的混和輸入。例如：`１２３＋４５６` 或 `１2４＊３２1`
@@ -37,9 +39,9 @@
 
 目前已完成容錯輸入第一點
 
-[初步解題系統實作](https://www.notion.so/06694af4299445b892e3a9e6f2c2599e)
+[初步解題系統實作](https://www.notion.so/d223efd1e1a147539717ebe78733c0c4)
 
-[**設計規格說明**](https://www.notion.so/f201c65fe79f43bb8f9e1eb4d8ca9948)
+[**設計規格說明**](https://www.notion.so/e0a8d6ae9cb045efac440a6e36bd89d6)
 
 ### operate_object.py
 
@@ -79,6 +81,12 @@
 - 此程式用來判斷小數運算物件包含哪些分類目標，並回傳給 classifier_test.py
 - 利用 python 的字典來做迭代判斷
 - 未來可在此程式新增小數運算分類目標與規則
+
+### 🆕 fraction_operation_classify.py（初步撰寫完成）
+
+- 此程式用來判斷分數運算物件包含哪些分類目標，並回傳給 classifier_test.py
+- 利用 python 的字典來做迭代判斷
+- 未來可在此程式新增分數運算分類目標與規則
 
 ### Infix _To_Postfix.py、ExpressTree.py（暫時用不到）
 

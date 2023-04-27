@@ -3,6 +3,7 @@ from subtraction_classify import subtraction_classify
 from multiplication_classify import multiplication_classify
 from division_classify import division_classify
 from decimal_operation_classify import decimal_operation_classify
+from fraction_operation_classify import fraction_operation_classify
 
 import unicodedata
 
@@ -15,7 +16,9 @@ class Node():
     
     # 根據物件的 self.operator 來決定分類方式，並回傳分類結果
     def classify(self):
-        if "." in self.LeftValue or "." in self.RightValue:
+        if "Divide" in self.LeftValue or "Divide" in self.RightValue:
+            return fraction_operation_classify(self.operator, self.LeftValue, self.RightValue)
+        elif "." in self.LeftValue or "." in self.RightValue:
             return decimal_operation_classify(self.operator, self.LeftValue, self.RightValue)
         elif self.operator == "+":
             return addition_classify(self.LeftValue, self.RightValue)
@@ -48,6 +51,12 @@ class Node():
         self.LeftValue = question.split(self.operator)[0]
         self.RightValue = question.split(self.operator)[1]
 
+        if "." in self.LeftValue or "." in self.RightValue:
+            # 小數點後皆為 0，則轉換為整數
+            if float(self.LeftValue).is_integer():
+                self.LeftValue = self.LeftValue.split(".")[0]
+            if float(self.RightValue).is_integer():
+                self.RightValue = self.RightValue.split(".")[0]
 
 # class Addition(Node):
 #     def __init__(self, operator, left_value, right_value):
