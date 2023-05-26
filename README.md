@@ -19,7 +19,7 @@
 |-- test.ipynb                          # 程式碼測試
 |-- test_data.xlsx                      # 測試資料集
 |-- system_framework.png                # 系統架構圖
-|-- README.me
+|-- README.md
 ```
 
 ## 執行方式
