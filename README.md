@@ -8,12 +8,12 @@
 |-- classifier_test.py                  # 主程式
 |-- operate_object.py                   # 各種運算方式的類別（class）
 |-- classify
-		|-- addition_classify.py            # 兩正整數加法分類
-		|-- subtraction_classify.py         # 兩正整數減法分類
-		|-- multiplication_classify.py      # 兩正整數乘法分類
-		|-- divison_classify.py             # 兩正整數除法分類
-		|-- decimal_operation_classify.py   # 兩正小數運算分類
-		|-- fraction_operation_classify.py  # 兩正分數運算分類
+    |-- addition_classify.py            # 兩正整數加法分類
+    |-- subtraction_classify.py         # 兩正整數減法分類
+    |-- multiplication_classify.py      # 兩正整數乘法分類
+    |-- divison_classify.py             # 兩正整數除法分類
+    |-- decimal_operation_classify.py   # 兩正小數運算分類
+    |-- fraction_operation_classify.py  # 兩正分數運算分類
 |-- ExpressionTree.py                   # 暫時用不到
 |-- Infix_To_Postfix.py                 # 暫時用不到
 |-- test.ipynb                          # 程式碼測試
