@@ -1,9 +1,9 @@
-from addition_classify import addition_classify
-from subtraction_classify import subtraction_classify
-from multiplication_classify import multiplication_classify
-from division_classify import division_classify
-from decimal_operation_classify import decimal_operation_classify
-from fraction_operation_classify import fraction_operation_classify
+from classify.addition_classify import addition_classify
+from classify.subtraction_classify import subtraction_classify
+from classify.multiplication_classify import multiplication_classify
+from classify.division_classify import division_classify
+from classify.decimal_operation_classify import decimal_operation_classify
+from classify.fraction_operation_classify import fraction_operation_classify
 
 import unicodedata
 
@@ -12,22 +12,28 @@ class Node():
         self.operator = None
         self.LeftValue = None
         self.RightValue = None
+        self.classify_tag= None
+        self.strategy = None
         self.__preprocessing(question)  # 將輸入預處理
+        self.__classify()  # 完成分類
     
-    # 根據物件的 self.operator 來決定分類方式，並回傳分類結果
-    def classify(self):
+    # 根據物件的 self.operator 來決定分類方式，並回傳分類結果與決策出的詳解工具
+    def __classify(self):
         if "Divide" in self.LeftValue or "Divide" in self.RightValue:
-            return fraction_operation_classify(self.operator, self.LeftValue, self.RightValue)
+            classify_result = fraction_operation_classify(self.operator, self.LeftValue, self.RightValue)
         elif "." in self.LeftValue or "." in self.RightValue:
-            return decimal_operation_classify(self.operator, self.LeftValue, self.RightValue)
+            classify_result = decimal_operation_classify(self.operator, self.LeftValue, self.RightValue)
         elif self.operator == "+":
-            return addition_classify(self.LeftValue, self.RightValue)
+            classify_result = addition_classify(self.LeftValue, self.RightValue)
         elif self.operator == "-":
-            return subtraction_classify(self.LeftValue, self.RightValue)
+            classify_result = subtraction_classify(self.LeftValue, self.RightValue)
         elif self.operator == "*":
-            return multiplication_classify(self.LeftValue, self.RightValue)
+            classify_result = multiplication_classify(self.LeftValue, self.RightValue)
         elif self.operator == "/":
-            return division_classify(self.LeftValue, self.RightValue)
+            classify_result = division_classify(self.LeftValue, self.RightValue)
+        
+        self.classify_tag = classify_result["tag"]
+        self.strategy = classify_result["strategy"]
 
     # 將輸入預處理，建立此物件的屬性
     def __preprocessing(self, question):

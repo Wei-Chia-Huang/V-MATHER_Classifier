@@ -1,8 +1,9 @@
 # 此程式會將小數運算的分類結果回傳
 def decimal_operation_classify(operator, value1, value2):
-    classify_tag = []
+    classify_result = {"tag": [], "strategy": None}
 
     # 建立分類規則的字典，用來迭代尋找符合的分類標籤
+    # 分類標籤須按學習階段由低到高排列（低年級 -> 高年級）
     classify_rule = {
         "一位小數的加法": __addition_of_one_decimal_places,
         "一位小數的減法": __subtraction_of_one_decimal_places,
@@ -21,15 +22,34 @@ def decimal_operation_classify(operator, value1, value2):
         "運算結果小於零": __answer_less_then_0
     }
 
+    # 建立分類標籤所對應的詳解工具之字典
+    # 若有新增的分類標籤或詳解工具，請記得修改此字典
+    strategy_table = {
+        "暫無詳解工具": [
+            "一位小數的加法", "一位小數的減法", "二位小數的加法", "二位小數的減法", 
+            "一位小數乘以一位整數", "二位小數乘以一位整數", "二位小數乘以二位整數",
+            "多位小數的加法", "多位小數的減法", "多位小數乘以整數", "小數乘以小數", 
+            "小數除以整數", "整數除以小數", "小數除以小數", "運算結果小於零"
+        ]
+    }
+    
     try:
+        # 迭代尋找符合的所有分類標籤
         for key in classify_rule:
             if classify_rule[key](operator, value1, value2):
-                classify_tag.append(key)
+                classify_result["tag"].append(key)
 
-        return ", ".join(classify_tag)
+        # 詳解工具由學習階段最早的分類標籤決定
+        for key in strategy_table:
+            if classify_result["tag"][0] in strategy_table[key]:
+                classify_result["strategy"] = key
+
+        return classify_result
     except Exception as err:
         print(err)
-        return "decimal_operation_classify.py 有 Bug, 須排除"
+        classify_result["tag"].append("decimal_operation_classify.py 有 Bug, 須排除")
+        classify_result["strategy"] = "因程式有錯誤，故無對應詳解工具"
+        return classify_result
 
 # 分類規則：一位小數的加法
 def __addition_of_one_decimal_places(operator, value1, value2):

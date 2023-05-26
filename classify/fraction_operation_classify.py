@@ -1,8 +1,9 @@
 # 此程式會將分數運算的分類結果回傳
 def fraction_operation_classify(operator, value1, value2):
-    classify_tag = []
+    classify_result = {"tag": [], "strategy": None}
 
     # 建立分類規則的字典，用來迭代尋找符合的分類標籤
+    # 分類標籤須按學習階段由低到高排列（低年級 -> 高年級）
     classify_rule = {
         "單位分數": __unit_fraction,
         "同分母分數的加法": __addition_of_same_denominator,
@@ -19,19 +20,37 @@ def fraction_operation_classify(operator, value1, value2):
         "異分母分數的除法": __divison_of_different_denominator,
     }
 
+    # 建立分類標籤所對應的詳解工具之字典
+    # 若有新增的分類標籤或詳解工具，請記得修改此字典
+    strategy_table = {
+        "暫無詳解工具": [
+            "單位分數", "同分母分數的加法", "同分母分數的減法", "分數與整數的加法", 
+            "分數與整數的減法", "異分母分數的加法", "異分母分數的減法", "分數乘以整數", 
+            "分數乘以分數", "分數除以整數", "整數除以分數", "同分母分數的除法", "異分母分數的除法"
+        ]
+    }
+
     # 提取兩分數分子跟分母，資料型態為 [分子, 分母]，整數計為 [0, 0]
     value1_parts = [0, 0] if "Divide" not in value1 else __numerator_and_denominator(value1)
     value2_parts = [0, 0] if "Divide" not in value2 else __numerator_and_denominator(value2)
 
     try:
+        # 迭代尋找符合的所有分類標籤
         for key in classify_rule:
             if classify_rule[key](operator, value1_parts, value2_parts):
-                classify_tag.append(key)
+                classify_result["tag"].append(key)
 
-        return ", ".join(classify_tag)
+        # 詳解工具由學習階段最早的分類標籤決定
+        for key in strategy_table:
+            if classify_result["tag"][0] in strategy_table[key]:
+                classify_result["strategy"] = key
+
+        return classify_result
     except Exception as err:
         print(err)
-        return "fraction_operation_classify.py 有 Bug, 須排除"
+        classify_result["tag"].append("fraction_operation_classify.py 有 Bug, 須排除")
+        classify_result["strategy"] = "因程式有錯誤，故無對應詳解工具"
+        return classify_result
     
 # 提取分子跟分母
 def __numerator_and_denominator(fraction):

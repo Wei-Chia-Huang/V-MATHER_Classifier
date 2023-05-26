@@ -1,4 +1,26 @@
-# [ 0427 ] V-MATHER 分類器程式碼修改
+# [ 0526 ] V-MATHER 分類器程式碼修改 
+
+## 檔案結構
+
+```python
+/V-MATHER
+|-- __pycache__
+|-- classifier_test.py                  # 主程式
+|-- operate_object.py                   # 各種運算方式的類別（class）
+|-- classify
+		|-- addition_classify.py            # 兩正整數加法分類
+		|-- subtraction_classify.py         # 兩正整數減法分類
+		|-- multiplication_classify.py      # 兩正整數乘法分類
+		|-- divison_classify.py             # 兩正整數除法分類
+		|-- decimal_operation_classify.py   # 兩正小數運算分類
+		|-- fraction_operation_classify.py  # 兩正分數運算分類
+|-- ExpressionTree.py                   # 暫時用不到
+|-- Infix_To_Postfix.py                 # 暫時用不到
+|-- test.ipynb                          # 程式碼測試
+|-- test_data.xlsx                      # 測試資料集
+|-- system_framework.png                # 系統架構圖
+|-- README.me
+```
 
 ## 執行方式
 
@@ -21,7 +43,7 @@
     
     運算子前後加空格。例如：`123 + 456`
     
-    🆕 分數的輸入方式為 `Divide[分子, 分母]`
+    分數的輸入方式為 `Divide[分子, 分母]`
     
 - 容錯輸入
     1. 輸入可以自動忽略空格。例如：`123+421` 或 `223 + 321`
@@ -46,47 +68,51 @@
 ### operate_object.py
 
 - 此程式為各種運算方式的類別（class）
-- ~~目前已撰寫加法、減法、乘法、除法的類別~~
 - 目前只有 Node 類別
 - 未來可在此程式新增運算方式的類別
 
-### xxx_classify.py 都有利用 `try...except...` 來幫助排除錯誤
+### classify 資料夾的共同規則
 
-### addition_classify.py（初步撰寫完成）
-
-- 此程式用來判斷加法物件包含哪些分類目標，並回傳給 classifier_test.py
+- xxx_classify.py 都有利用 `try...except...` 來幫助排除錯誤
+- xxx_classify.py 會判斷 Node 物件包含哪些分類標籤，並決策出合適的詳解工具
 - 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增加法分類目標與規則
-
-### subtraction_classify.py（初步撰寫完成）
-
-- 此程式用來判斷減法物件包含哪些分類目標，並回傳給 classifier_test.py
-- 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增減法分類目標與規則
-
-### multiplication_classify.py（初步撰寫完成）
-
-- 此程式用來判斷乘法物件包含哪些分類目標，並回傳給 classifier_test.py
-- 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增乘法分類目標與規則
-
-### division_classify.py（初步撰寫完成）
-
-- 此程式用來判斷除法物件包含哪些分類目標，並回傳給 classifier_test.py
-- 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增除法分類目標與規則
-
-### decimal_operation_classify.py（初步撰寫完成）
-
-- 此程式用來判斷小數運算物件包含哪些分類目標，並回傳給 classifier_test.py
-- 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增小數運算分類目標與規則
-
-### 🆕 fraction_operation_classify.py（初步撰寫完成）
-
-- 此程式用來判斷分數運算物件包含哪些分類目標，並回傳給 classifier_test.py
-- 利用 python 的字典來做迭代判斷
-- 未來可在此程式新增分數運算分類目標與規則
+- 回傳給 classifier_test.py 的資料型態為字典（dict）
+    
+    ```python
+    classify_result = {"tag": [], "strategy": None}
+    ```
+    
+- 各 xxx_classifier_test.py 說明
+    
+    ### addition_classify.py
+    
+    - 詳解工具決策已撰寫完成
+    - 未來可在此程式新增加法分類目標與規則
+    
+    ### subtraction_classify.py
+    
+    - 詳解工具決策已撰寫完成
+    - 未來可在此程式新增減法分類目標與規則
+    
+    ### multiplication_classify.py
+    
+    - 詳解工具決策已撰寫完成
+    - 未來可在此程式新增乘法分類目標與規則
+    
+    ### division_classify.
+    
+    - 詳解工具決策已撰寫完成
+    - 未來可在此程式新增除法分類目標與規則
+    
+    ### decimal_operation_classify.py（詳解工具決策**尚未**撰寫）
+    
+    - 詳解工具決策**尚未**撰寫完成
+    - 未來可在此程式新增小數運算分類目標與規則
+    
+    ### fraction_operation_classify.py（詳解工具決策**尚未**撰寫）
+    
+    - 詳解工具決策**尚未**撰寫完成
+    - 未來可在此程式新增分數運算分類目標與規則
 
 ### Infix _To_Postfix.py、ExpressTree.py（暫時用不到）
 

@@ -72,7 +72,7 @@ while i < 20:
     output = Node(question)  
 
     # 輸出題目與分類結果
-    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify()}")
+    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify_tag}, {output.strategy}")
     i += 1  
 
 print("\n兩正小數或整數運算分類測試:")
@@ -85,7 +85,7 @@ while i < 20:
     output = Node(question)  
 
     # 輸出題目與分類結果
-    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify()}")
+    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify_tag}, {output.strategy}")
     i += 1  
 
 print("\n兩正分數或整數運算分類測試:")
@@ -98,7 +98,7 @@ while i < 20:
     output = Node(question)  
 
     # 輸出題目與分類結果
-    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify()}")
+    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify_tag}, {output.strategy}")
     i += 1
 
 # 手動輸入題目
@@ -109,4 +109,4 @@ while True:
     output = Node(question)
 
     # 輸出題目與分類結果
-    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify()}")
+    print(f"{output.LeftValue} {output.operator} {output.RightValue}, {output.classify_tag}, {output.strategy}")
