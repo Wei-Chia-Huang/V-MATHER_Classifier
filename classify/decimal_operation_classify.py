@@ -14,7 +14,7 @@ def decimal_operation_classify(operator, value1, value2):
         "二位小數乘以二位整數": __two_decimal_times_two_digit,
         "多位小數的加法": __addition_of_multiple_decimal_places,
         "多位小數的減法": __subtraction_of_multiple_decimal_places,
-        "多位小數乘以整數": __multiple_decimal_times_integer,
+        "小數乘以整數": __decimal_times_integer,
         "小數乘以小數": __decimal_times_decimal,
         "小數除以整數": __decimal_divided_integer,
         "整數除以小數": __integer_divided_decimal,
@@ -28,7 +28,7 @@ def decimal_operation_classify(operator, value1, value2):
         "暫無詳解工具": [
             "一位小數的加法", "一位小數的減法", "二位小數的加法", "二位小數的減法", 
             "一位小數乘以一位整數", "二位小數乘以一位整數", "二位小數乘以二位整數",
-            "多位小數的加法", "多位小數的減法", "多位小數乘以整數", "小數乘以小數", 
+            "多位小數的加法", "多位小數的減法", "小數乘以整數", "小數乘以小數", 
             "小數除以整數", "整數除以小數", "小數除以小數", "運算結果小於零"
         ]
     }
@@ -167,15 +167,15 @@ def __subtraction_of_multiple_decimal_places(operator, value1, value2):
             return True
     return False
 
-# 分類規則：多位小數乘以整數
-def __multiple_decimal_times_integer(operator, value1, value2):
+# 分類規則：小數乘以整數
+def __decimal_times_integer(operator, value1, value2):
     if operator == "*":
         # 處理value1, value2的小數點
         value1_decimal = 0 if "." not in value1 else len(value1.split(".")[1])
         value2_decimal = 0 if "." not in value2 else len(value2.split(".")[1])
         
         # 判斷value1, value2是有多位小數
-        if max(value1_decimal, value2_decimal) > 2:
+        if max(value1_decimal, value2_decimal) > 0:
             # 判斷value1, value2是否有整數
             if value1_decimal == 0 or value2_decimal == 0:
                 return True
